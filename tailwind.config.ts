@@ -9,8 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary_brand: "#08CEFF",
+        secondary_brand: "#22A2FF",
+        tertiary_brand: "#3484FF",
+        quaternary_brand: "#4C4488",
+        quinary_brand: "#232152",
+        custom_gray: "#f5f6fa",
+        custom_purple: "#321649",
       },
     },
   },
