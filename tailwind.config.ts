@@ -15,6 +15,8 @@ const config: Config = {
         quaternary_brand: "#4C4488",
         quinary_brand: "#232152",
         custom_gray: "#f5f6fa",
+        custom_gray_2: "#aaaaaa",
+        custom_gray_3: "#ebedf2",
         custom_purple: "#321649",
       },
     },
