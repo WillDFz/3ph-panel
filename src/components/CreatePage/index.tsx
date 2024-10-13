@@ -1,24 +1,29 @@
 import { CloudUploadOutlined } from '@mui/icons-material';
 import React, { useState, useEffect } from 'react';
+import { usePages } from '@/hooks/usePages';
+import { toast } from 'react-toastify';
 
-const CreatePage = () => {
+interface ICreatePageProps {
+    close: () => void;
+}
+
+const CreatePage: React.FC<ICreatePageProps> = ({close}) => {
+    // hooks
+    const { createPage, loading, getPages } = usePages();
+
+    // states
     const [pageName, setPageName] = useState('');
     const [pageTitle, setPageTitle] = useState('');
     const [pageSubtitle, setPageSubtitle] = useState('');
+    const [pageLink, setPageLink] = useState('');
     const [pageImage, setPageImage] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string | ArrayBuffer | null>(null);
 
-    useEffect(() => {
-        if (pageImage) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result);
-            };
-            reader.readAsDataURL(pageImage as Blob);
-        } else {
-            setImagePreview(null);
-        }
-    }, [pageImage]);
+    // functions
+
+    const loadPages = async () => {
+        await getPages();
+    }
 
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
@@ -34,6 +39,38 @@ const CreatePage = () => {
             setPageImage(files[0]);
         }
     };
+
+    const handleSave = async () => {
+        if (!pageName || !pageTitle || !pageSubtitle || !pageImage || !pageLink) {
+            return toast.error('Please fill all inputs!');
+        }
+        try {
+            await createPage({
+                name: pageName,
+                title: pageTitle,
+                subtitle: pageSubtitle,
+                link: pageLink,
+                image: pageImage,
+            });
+        }catch (error) {
+            console.error(error);
+        } finally {
+            close();
+        }
+    }
+
+    // lifecycle
+    useEffect(() => {
+        if (pageImage) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result);
+            };
+            reader.readAsDataURL(pageImage as Blob);
+        } else {
+            setImagePreview(null);
+        }
+    }, [pageImage]);
 
     return (
         <div>
@@ -74,6 +111,8 @@ const CreatePage = () => {
                         <label className='mb-2'>Explore more link</label>
                         <input type="text" placeholder='Define the explore more link'
                             className='w-full border-custom_gray_2 border rounded-lg ps-5 p-2'
+                            value={pageLink}
+                            onChange={(e) => setPageLink(e.target.value)}
                         />
                     </div>
                 </div>
@@ -104,7 +143,10 @@ const CreatePage = () => {
                     </div>
                 </div>
             </div>
-            <button className='w-full bg-tertiary_brand text-white rounded-md p-2'>
+            <button className='w-full bg-tertiary_brand text-white rounded-md p-2'
+                onClick={handleSave}
+                disabled={loading}
+            >
                 Save
             </button>
         </div>

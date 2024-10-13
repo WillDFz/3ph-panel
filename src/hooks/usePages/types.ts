@@ -1,5 +1,5 @@
 interface IPage {
-    id: number;
+    id: string;
     title: string;
     subtitle: string;
     link: string;
@@ -7,7 +7,7 @@ interface IPage {
 }
 
 interface ISection {
-    id: number;
+    id: string;
     name: string;
     title: string;
     subtitle: string;

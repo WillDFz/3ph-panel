@@ -1,65 +1,57 @@
 {
-    "pages": [
+  "pages": [
+    {
+      "id": "2",
+      "title": "Home",
+      "subtitle": "Welcome to the home page",
+      "link": "/home",
+      "image": "https://via.placeholder.com/150",
+      "sections": [
         {
-            "id": 1,
-            "title": "Home",
-            "subtitle": "Welcome to the home page",
-            "link": "/home",
-            "image": "https://via.placeholder.com/150",
-            "sections":[
-                {
-                    "id": 1,
-                    "type": "001",
-                    "name": "Section name 1",
-                    "title": "Section title 1",
-                    "subtitle": "This is the subtitle of section 1",
-                    "text": "This is the text of section 1",
-                    "buttonInitialText": "Click me",
-                    "buttonHoverText": "You Hovered me",
-                    "buttonLink": "https://www.google.com",
-                    "image": "https://via.placeholder.com/150"
-                }
-            ]
+          "id": "1",
+          "type": "001",
+          "name": "Section name 1",
+          "title": "Section title 1",
+          "subtitle": "This is the subtitle of section 1",
+          "text": "This is the text of section 1",
+          "buttonInitialText": "Click me",
+          "buttonHoverText": "You Hovered me",
+          "buttonLink": "https://www.google.com",
+          "image": "https://via.placeholder.com/150"
         },
         {
-            "id": 2,
-            "title": "About",
-            "subtitle": "Welcome to the about page",
-            "link": "/about",
-            "image": "https://via.placeholder.com/150",
-            "sections":[
-                {
-                    "id": 1,
-                    "name": "Section name 1",
-                    "title": "Section title 1",
-                    "subtitle": "This is the subtitle of section 1",
-                    "text": "This is the text of section 1",
-                    "buttonInitialText": "Click me",
-                    "buttonHoverText": "You Hovered me",
-                    "buttonLink": "https://www.google.com",
-                    "image": "https://via.placeholder.com/150"
-                }
-            ]
+          "id": "2",
+          "type": "002",
+          "name": "Section name 2",
+          "title": "Section title 2",
+          "subtitle": "This is the subtitle of section 2",
+          "text": "This is the text of section 2",
+          "buttonInitialText": "Learn more",
+          "buttonHoverText": "Discover more",
+          "buttonLink": "https://www.example.com",
+          "image": "https://via.placeholder.com/150"
         },
         {
-            "id": 3,
-            "title": "Contact",
-            "subtitle": "Welcome to the contact page",
-            "link": "/contact",
-            "image": "https://via.placeholder.com/150",
-            "sections":[
-                {
-                    "id": 1,
-                    "name": "Section name 1",
-                    "title": "Section title 1",
-                    "subtitle": "This is the subtitle of section 1",
-                    "text": "This is the text of section 1",
-                    "buttonInitialText": "Click me",
-                    "buttonHoverText": "You Hovered me",
-                    "buttonLink": "https://www.google.com",
-                    "image": "https://via.placeholder.com/150"
-                }
-            ]
+          "id": "3",
+          "type": "003",
+          "name": "Section name 3",
+          "title": "Section title 3",
+          "subtitle": "This is the subtitle of section 3",
+          "text": "This is the text of section 3",
+          "buttonInitialText": "Get started",
+          "buttonHoverText": "Start now",
+          "buttonLink": "https://www.example.org",
+          "image": "https://via.placeholder.com/150"
         }
-    ]
+      ]
+    },
+    {
+      "id": "c081",
+      "name": "Page 1 ",
+      "title": "Page 1",
+      "subtitle": "page 1 ",
+      "link": "1",
+      "image": {}
+    }
+  ]
 }

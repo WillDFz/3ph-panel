@@ -19,6 +19,23 @@ class PagesService {
         }
     }
 
+    async createPage(page: any) {
+        try {
+            const response = await this.axiosInstance.post('/pages', page);
+            return response.data;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async deletePage(id: string) {
+        try {
+            const response = await this.axiosInstance.delete(`/pages/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error(error);
+        }
+    }
 }
 
 export default PagesService;

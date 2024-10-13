@@ -2,6 +2,8 @@
 import Header from "@/components/UI/Header";
 import "./globals.scss";
 import { usePathname } from "next/navigation";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 
 export default function RootLayout({
   children,
@@ -18,6 +20,7 @@ export default function RootLayout({
         {!isLoginPage &&
           <Header />}
         {children}
+        <ToastContainer />
       </body>
     </html>
   );

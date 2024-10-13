@@ -1,27 +1,34 @@
 'use client'
 import CreatePage from "@/components/CreatePage";
+import CreateSection from "@/components/Sections/CreateSection";
+import SectionsList from "@/components/Sections/SectionsList";
 import BaseModal from "@/components/UI/BaseModal";
 import CustomTabPanel from "@/components/UI/TabContainer";
 import { usePages } from "@/hooks/usePages";
-import { Add } from "@mui/icons-material";
+import { Add, Delete, DeleteOutline } from "@mui/icons-material";
 import { Tab, Tabs } from "@mui/material";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   // hooks
-  const { getPages, pages, loading } = usePages();
+  const { getPages, pages, loading, deletePage } = usePages();
   // states
   const [activeTab, setActiveTab] = useState(0);
-
   const [showCreatePageModal, setShowCreatePageModal] = useState(false);
+  const [showCreateSectionModal, setCreateSectionModal] = useState(false);
 
   const loadPages = async () => {
     await getPages();
   }
 
+  const handleDeletePage = async (id: string) => {
+    await deletePage(id);
+    await loadPages();
+  }
+
   useEffect(() => {
     loadPages();
-  }, []);
+  }, [showCreatePageModal]);
 
   return (
     <>
@@ -44,7 +51,23 @@ export default function Home() {
             <>
               {pages?.map((page, index) => (
                 <CustomTabPanel key={page.id} value={activeTab} index={index}>
-                  <h1>{page.title}</h1>
+                  {page.title !== 'Home' && (
+                    <div className="flex justify-end">
+                      <button onClick={e => handleDeletePage(page.id)}>
+                        <DeleteOutline className="text-red-600" />
+                        <span className="text-sm">
+                          Delete
+                        </span>
+                      </button>
+                    </div>
+                  )
+                  }
+                  <SectionsList sections={page?.sections} />
+                  <div className='flex justify-center'>
+                    <button onClick={e => setCreateSectionModal(true)}>
+                      <Add className='text-tertiary_brand' />
+                    </button>
+                  </div>
                 </CustomTabPanel>
               ))}
             </>
@@ -52,7 +75,10 @@ export default function Home() {
         </div>
       </div>
       <BaseModal open={showCreatePageModal} onClose={() => setShowCreatePageModal(false)} maxWidth={'sl'} title="New Page">
-        <CreatePage />
+        <CreatePage close={() => setShowCreatePageModal(false)}/>
+      </BaseModal>
+      <BaseModal open={showCreateSectionModal} onClose={() => setCreateSectionModal(false)} maxWidth={'sl'} title="New Section">
+        <CreateSection />
       </BaseModal>
     </>
   );
