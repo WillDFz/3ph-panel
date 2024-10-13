@@ -7,13 +7,10 @@ interface IPage {
 }
 
 interface ISection {
-    id: string;
-    name: string;
-    title: string;
-    subtitle: string;
-    text: string;
-    buttonInitialText: string;
-    buttonHoverText: string;
-    buttonLink: string;
-    image: string;
+    id?: string;
+    pageId: string;
+    title?: string;
+    description?: string;
+    primary_button?: string;
+    side_image?: string;
 }

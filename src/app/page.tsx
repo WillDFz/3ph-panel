@@ -16,6 +16,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
   const [showCreatePageModal, setShowCreatePageModal] = useState(false);
   const [showCreateSectionModal, setCreateSectionModal] = useState(false);
+  const [pageId, setPageId] = useState<string>();
 
   const loadPages = async () => {
     await getPages();
@@ -24,6 +25,14 @@ export default function Home() {
   const handleDeletePage = async (id: string) => {
     await deletePage(id);
     await loadPages();
+  }
+
+  const handleCreateSection = (id: string) => {
+    if (id) {
+      setPageId(id);
+      setCreateSectionModal(true);
+    }
+
   }
 
   useEffect(() => {
@@ -62,9 +71,10 @@ export default function Home() {
                     </div>
                   )
                   }
-                  <SectionsList sections={page?.sections} />
-                  <div className='flex justify-center'>
-                    <button onClick={e => setCreateSectionModal(true)}>
+                  {/* list */}
+                  <SectionsList pageId={page.id}  refreshSections={showCreateSectionModal}/>
+                  <div className='bg-white flex justify-center rounded-lg p-3'>
+                    <button onClick={e => handleCreateSection(page.id)}>
                       <Add className='text-tertiary_brand' />
                     </button>
                   </div>
@@ -75,10 +85,10 @@ export default function Home() {
         </div>
       </div>
       <BaseModal open={showCreatePageModal} onClose={() => setShowCreatePageModal(false)} maxWidth={'sl'} title="New Page">
-        <CreatePage close={() => setShowCreatePageModal(false)}/>
+        <CreatePage close={() => setShowCreatePageModal(false)} />
       </BaseModal>
-      <BaseModal open={showCreateSectionModal} onClose={() => setCreateSectionModal(false)} maxWidth={'sl'} title="New Section">
-        <CreateSection />
+      <BaseModal open={showCreateSectionModal} onClose={() => setCreateSectionModal(false)} maxWidth={'ssl'} title="New Section">
+        <CreateSection pageId={pageId!} close={()=> setCreateSectionModal(false)}  />
       </BaseModal>
     </>
   );
