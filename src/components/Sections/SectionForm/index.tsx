@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useSection } from '@/hooks/useSection'
-import { get } from 'http';
 
 interface SectionFormProps {
     pageId: string,
@@ -13,8 +12,6 @@ interface SectionFormProps {
 const SectionForm: React.FC<SectionFormProps> = ({ type, pageId, close }) => {
 
     const { createSection, getSections } = useSection();
-
-    const [value, setValue] = useState('');
 
     const [section, setSection] = useState<ISection>({
         pageId
