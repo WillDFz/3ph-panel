@@ -5,9 +5,6 @@ export function middleware(req: NextRequest) {
     const cookies = req.cookies;
     const token = cookies.get('token')?.value;
 
-    console.log('Cookies:', cookies)
-    console.log('Token:', token);
-
     if (!token) {
         console.log('Usuário não autenticado, redirecionando para a página inicial');
         return NextResponse.redirect(new URL('/auth/login', req.url));
