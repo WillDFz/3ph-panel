@@ -1,7 +1,10 @@
-import { useEffect, useState } from 'react'
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+'use client'
+import { useState } from 'react'
 import { useSection } from '@/hooks/useSection'
+import dynamic from 'next/dynamic';
+
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+import 'react-quill/dist/quill.snow.css';
 
 interface SectionFormProps {
     pageId: string,
@@ -11,7 +14,7 @@ interface SectionFormProps {
 
 const SectionForm: React.FC<SectionFormProps> = ({ type, pageId, close }) => {
 
-    const { createSection, getSections } = useSection();
+    const { createSection } = useSection();
 
     const [section, setSection] = useState<ISection>({
         pageId
@@ -28,10 +31,6 @@ const SectionForm: React.FC<SectionFormProps> = ({ type, pageId, close }) => {
         await createSection(section);
         close();
     }
-
-    useEffect(() => {
-        console.log('section', section)
-    }, [section])
 
     return (
         <div>

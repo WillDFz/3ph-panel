@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react'
 import SectionsSlider from '../SectionsSlider'
 import BaseModal from '@/components/UI/BaseModal'
@@ -14,8 +15,6 @@ const CreateSection: React.FC<CreateSectionProps> = ({ pageId, close }) => {
   const [sectionType, setSectionType] = useState<string>('')
 
   const handleSelectType = (type: string) => {
-    console.log('type', type)
-    console.log('pageId', pageId)
 
     setSectionType(type)
     setShowSectionForm(true)
